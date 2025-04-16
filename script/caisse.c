@@ -8,6 +8,28 @@ double generer_valeur() {
 }
 
 
+void calcule_monnaie(double rendu) {
+	printf("Reste : %2f RS\n", rendu);
+	for (int i = 0; i < 14; i++) {
+		int nombre = 0;
+		while (rendu >= argents[i] && stock[i] > 0) {
+			rendu = round ((rendu - argents)* 100.0) / 100.0;
+			stock[i]--;
+			nombre++;
+		}
+
+		if (nombre > 0){
+			printf ("Rs %2f x %d\n", argents[i], nombre);
+		}
+	}
+
+
+	if (rendu > 0.001) {
+		printf ("Pas de monnaie en dessous de 0.05 ." );
+		printf ("Reste : %2f Rs\n", rendu);
+	}
+}
+
 
 int main ()
 {
